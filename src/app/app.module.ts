@@ -17,7 +17,11 @@ import { postReducer } from './store/reducers/post.reducer';
 import { ApiService } from './services/api.service';
 import { PostState } from './store';
 import { DialogComponent } from './components/dialog/dialog.component';
-import {MatDialogModule} from '@angular/material/dialog';
+import { MatDialogModule } from '@angular/material/dialog';
+import { MatFormFieldModule } from '@angular/material/form-field';
+import { PostComponent } from './components/post/post.component';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
+import { MatInputModule } from '@angular/material';
 
 export interface AppState {
   error: ErrorState;
@@ -26,11 +30,11 @@ export interface AppState {
 
 export const reducers: ActionReducerMap<AppState> = {
   error: errorReducer,
-  posts: postReducer,
+  posts: postReducer
 };
 
 @NgModule({
-  declarations: [AppComponent, UsersComponent, DialogComponent],
+  declarations: [AppComponent, UsersComponent, DialogComponent, PostComponent],
   imports: [
     BrowserModule,
     MatDialogModule,
@@ -41,9 +45,14 @@ export const reducers: ActionReducerMap<AppState> = {
     StoreModule.forRoot(reducers),
     StoreDevtoolsModule.instrument(),
     EffectsModule.forRoot([PostEffects]),
-    HttpClientModule
+    HttpClientModule,
+    MatFormFieldModule,
+    MatInputModule,
+    FormsModule,
+    ReactiveFormsModule
   ],
   providers: [ApiService],
-  bootstrap: [AppComponent]
+  bootstrap: [AppComponent],
+  entryComponents: [DialogComponent]
 })
 export class AppModule {}

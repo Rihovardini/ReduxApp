@@ -1,0 +1,24 @@
+<div class="post" *ngIf="!loading">
+  <mat-card class="post-card">
+    <mat-card-header>
+      <div mat-card-avatar class="post-header-image"></div>
+      <mat-card-title>Post</mat-card-title>
+      <mat-card-subtitle>Edit Post</mat-card-subtitle>
+    </mat-card-header>
+    <mat-card-content>
+      <mat-form-field>
+        <input matInput [(ngModel)]="post.title" required placeholder="Title">
+      </mat-form-field>
+      <mat-form-field>
+        <input matInput [(ngModel)]="post.body" placeholder="Description" required>
+      </mat-form-field>
+    </mat-card-content>
+    <mat-card-actions align="end">
+      <button mat-raised-button *ngIf='typeOfButton'(click)="editPost()" color="primary">Edit</button>
+      <button mat-raised-button *ngIf='!typeOfButton' (click)="createPost()" color="primary">Create</button>
+      <button mat-raised-button color="warn">
+        Cancel
+      </button>
+    </mat-card-actions>
+  </mat-card>
+</div>

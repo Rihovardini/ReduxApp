@@ -39,7 +39,7 @@ export class LoadPostSuccess implements Action {
 
 export class AddPost implements Action {
   readonly type = UserActions.ADD_POST;
-  constructor(public payload: string) {}
+  constructor(public payload: Post) {}
 }
 
 export class AddPostSuccess implements Action {
@@ -49,7 +49,7 @@ export class AddPostSuccess implements Action {
 
 export class UpdatePost implements Action {
   readonly type = UserActions.UPDATE_POST;
-  constructor(public payload: string) {}
+  constructor(public payload: Post) {}
 }
 
 export class UpdatePostSuccess implements Action {

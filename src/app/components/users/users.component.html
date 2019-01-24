@@ -13,8 +13,10 @@
       <p>{{ post.body }}</p></mat-card-content
     >
     <mat-card-actions>
-      <button mat-raised-button color="primary">Edit</button>
-      <button mat-raised-button color="warn" (click)="deletePost(post.id)">Remove</button>
+      <a mat-raised-button color="primary" [routerLink]="['post',post.id]">Edit</a>
+      <button mat-raised-button color="warn" (click)="openDialog(post.id)">
+        Remove
+      </button>
     </mat-card-actions>
   </mat-card>
 </div>

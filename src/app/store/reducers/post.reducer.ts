@@ -36,6 +36,7 @@ export const postReducer: (
     }
     case UserActions.ADD_POST_SUCCESS: {
       const post = action.payload;
+      state.posts.push(post);
       return { ...state, post, loading: false, loaded: true };
     }
     case UserActions.UPDATE_POST_SUCCESS: {
@@ -44,7 +45,7 @@ export const postReducer: (
     }
     case UserActions.REMOVE_POST_SUCCESS: {
       const postId = action.payload;
-      state.posts = state.posts.filter(el => el.id !== (+postId));
+      state.posts = state.posts.filter(el => el.id !== +postId);
       return { ...state, loading: false, loaded: true };
     }
     default:
