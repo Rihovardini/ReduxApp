@@ -27,8 +27,10 @@ export class PostComponent implements OnInit {
         this.typeOfButton = true;
         this.store.dispatch(new LoadPost(data.id));
         this.store.select('posts').subscribe(state => {
-          this.post = state.post;
-          this.loading = false;
+          if (state.post) {
+            this.post = state.post;
+            this.loading = false;
+          }
         });
       } else {
         this.loading = false;
