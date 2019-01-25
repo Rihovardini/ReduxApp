@@ -1,15 +1,9 @@
 import { Component, OnInit } from '@angular/core';
-import { Store, select } from '@ngrx/store';
+import { Store } from '@ngrx/store';
 import { AppState } from 'src/app/app.module';
-import { AddError, RemoveError } from 'src/app/store/actions/error.action';
-import { Observable } from 'rxjs';
 import { Post } from 'src/app/models/Post.model';
-import {
-  LoadPost,
-  LoadPosts,
-  RemovePost
-} from 'src/app/store/actions/post.action';
-import { MatDialog, MatDialogRef, MAT_DIALOG_DATA } from '@angular/material';
+import { LoadPosts, RemovePost } from 'src/app/store/actions/post.action';
+import { MatDialog } from '@angular/material';
 import { DialogComponent } from '../dialog/dialog.component';
 
 @Component({

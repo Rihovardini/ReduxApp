@@ -7,7 +7,7 @@ import { AppState } from 'src/app/app.module';
 
 @Injectable()
 export class ApiService {
-  private URL = 'https://jsonplaceholder.typicode.com';
+  private URL = 'http://localhost:3000';
 
   constructor(private http: HttpClient, private store: Store<AppState>) {}
 
