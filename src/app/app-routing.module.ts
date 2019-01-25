@@ -9,12 +9,12 @@ const routes: Routes = [
     component: UsersComponent
   },
   {
-   path: 'post',
-   component: PostComponent
+    path: 'post',
+    component: PostComponent
   },
   {
-   path: 'post/:id',
-   component: PostComponent
+    path: 'post/:id',
+    component: PostComponent
   }
 ];
 

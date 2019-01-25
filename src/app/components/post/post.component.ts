@@ -1,10 +1,13 @@
-import { Component, OnInit, ɵConsole } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 import { Store } from '@ngrx/store';
 import { AppState } from 'src/app/app.module';
 import { Post } from 'src/app/models/Post.model';
-import { ApiService } from 'src/app/services/api.service';
-import { LoadPost, UpdatePost, AddPost } from 'src/app/store/actions/post.action';
+import {
+  LoadPost,
+  UpdatePost,
+  AddPost
+} from 'src/app/store/actions/post.action';
 
 @Component({
   selector: 'app-post',
@@ -16,10 +19,7 @@ export class PostComponent implements OnInit {
   post: Post = new Post();
   loading = true;
   typeOfButton: boolean;
-  constructor(
-    private route: ActivatedRoute,
-    private store: Store<AppState>
-  ) {}
+  constructor(private route: ActivatedRoute, private store: Store<AppState>) {}
 
   ngOnInit() {
     this.route.params.subscribe(data => {

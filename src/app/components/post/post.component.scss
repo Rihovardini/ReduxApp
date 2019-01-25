@@ -1,11 +1,11 @@
 .post {
-    margin-top: 3%; 
+  margin-top: 3%;
+  display: flex;
+  justify-content: center;
+  .mat-card-content {
     display: flex;
-    justify-content: center;
-    .mat-card-content {
-        display: flex;
-        flex-direction: column;
-    }
+    flex-direction: column;
+  }
 }
 
 .post-card {

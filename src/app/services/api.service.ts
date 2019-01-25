@@ -4,8 +4,6 @@ import { Observable, of, forkJoin } from 'rxjs';
 import { Post } from 'src/app/models/Post.model';
 import { Store } from '@ngrx/store';
 import { AppState } from 'src/app/app.module';
-import { PostState } from '../store';
-import { state } from '@angular/animations';
 
 @Injectable()
 export class ApiService {
@@ -46,7 +44,8 @@ export class ApiService {
   }
 
   putPost(post: Post) {
-    return this.request('PUT', `posts/${post.id}`, post);  }
+    return this.request('PUT', `posts/${post.id}`, post);
+  }
 
   deletePost(postId): Observable<Post> {
     const endpoint = `posts/${postId}`;
