@@ -39,6 +39,9 @@ export class PostComponent implements OnInit {
     });
   }
 
+  get typeOfPost () {
+    return !this.typeOfButton ? 'Create' : 'Edit';
+  }
   createPost() {
     this.store.dispatch(new AddPost(this.post));
   }
