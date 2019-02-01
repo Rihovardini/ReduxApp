@@ -3,7 +3,7 @@ import { Actions, Effect, ofType } from '@ngrx/effects';
 import { Store, Action } from '@ngrx/store';
 import { Observable, of } from 'rxjs';
 import { tap, catchError, mergeMap, map } from 'rxjs/operators';
-import { PostState } from '..';
+import { PostState } from '../';
 import * as fromPost from '../actions/post.action';
 import * as fromError from '../actions/error.action';
 import { ApiService } from 'src/app/services/api.service';
@@ -70,7 +70,8 @@ export class PostEffects {
     tap(() => this.store.dispatch(new fromError.RemoveError())),
     mergeMap(action =>
       this.api.deletePost(action.payload).pipe(
-        map(post => {
+        map((post) => {
+          console.log(post);
           return new fromPost.RemovePostSuccess(action.payload);
         }),
         catchError(err => of(new fromError.AddError(err.error)))

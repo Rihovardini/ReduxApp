@@ -6,18 +6,17 @@
     display: flex;
     flex-direction: column;
   }
-}
 
-.post-card {
-  min-width: 500px;
-}
+  .post-card {
+    min-width: 500px;
+    .post-header-image {
+      background-image: url('https://material.angular.io/assets/img/examples/shiba1.jpg');
+      background-size: cover;
+    }
+  }
 
-.post-header-image {
-  background-image: url('https://material.angular.io/assets/img/examples/shiba1.jpg');
-  background-size: cover;
-}
-
-.alert {
-  color: red;
-  margin-bottom: 3%;
+  .alert {
+    color: red;
+    margin-bottom: 3%;
+  }
 }

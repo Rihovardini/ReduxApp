@@ -14,7 +14,7 @@ export class ApiService {
   private request(
     method: string,
     endpoint: string,
-    body?: any
+    body?: Post
   ): Observable<any> {
     const url = `${this.URL}/${endpoint}`;
     return this.http.request(method, url, {
@@ -39,15 +39,15 @@ export class ApiService {
     return post;
   }
 
-  createPost(post: Post) {
+  createPost(post: Post): Observable<Post> {
     return this.request('POST', `posts`, post);
   }
 
-  putPost(post: Post) {
+  putPost(post: Post): Observable<Post> {
     return this.request('PUT', `posts/${post.id}`, post);
   }
 
-  deletePost(postId): Observable<Post> {
+  deletePost(postId: string): Observable<Post> {
     const endpoint = `posts/${postId}`;
     return this.request('DELETE', endpoint);
   }
