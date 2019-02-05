@@ -1,0 +1,62 @@
+<div class="post" *ngIf="!loading">
+  <mat-card class="post-card">
+    <mat-card-header>
+      <div mat-card-avatar class="post-header-image"></div>
+      <mat-card-title>Post</mat-card-title>
+      <mat-card-subtitle>{{ typeOfPost }} Post</mat-card-subtitle>
+    </mat-card-header>
+    <mat-card-content>
+      <mat-form-field>
+        <input
+          matInput
+          [(ngModel)]="post.name"
+          maxlength="300"
+          minlength="4"
+          required
+          placeholder="Title"
+          #postName="ngModel"/>
+      </mat-form-field>
+      <div *ngIf="postName.invalid && postName.touched" class="alert">
+        <div *ngIf="postName.errors.required">Name is required.</div>
+        <div *ngIf="postName.errors.minlength">
+          Name must be at least 4 characters long.
+        </div>
+        <div *ngIf="postName.errors.maxlength">Name must 400st.</div>
+      </div>
+      <mat-form-field>
+        <input
+          matInput
+          [(ngModel)]="post.body"
+          placeholder="Description"
+          required
+          maxlength="400"
+          minlength="4"
+          #postBody="ngModel"/>
+      </mat-form-field>
+      <div *ngIf="postBody.invalid && postBody.touched" class="alert">
+        <div *ngIf="postBody.errors.required">Description is required.</div>
+        <div *ngIf="postBody.errors.minlength">
+          Name must be at least 4 characters long.
+        </div>
+        <div *ngIf="postBody.errors.maxlength">Name must 400st.</div>
+      </div>
+    </mat-card-content>
+    <mat-card-actions align="end">
+      <button
+        mat-raised-button
+        *ngIf="typeOfButton"
+        (click)="editPost()"
+        color="primary">
+        {{ typeOfPost }}
+      </button>
+      <button
+        mat-raised-button
+        *ngIf="!typeOfButton"
+        (click)="createPost()"
+        color="primary">
+        {{ typeOfPost }}
+      </button>
+      <button mat-raised-button color="warn" routerLink="/">Cancel</button>
+    </mat-card-actions>
+  </mat-card>
+</div>
