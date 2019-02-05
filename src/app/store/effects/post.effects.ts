@@ -22,7 +22,9 @@ export class PostEffects {
     tap(() => this.store.dispatch(new fromError.RemoveError())),
     mergeMap(() =>
       this.api.getPosts().pipe(
-        map(posts => new fromPost.LoadPostsSuccess(posts)),
+        map(posts => {
+          return new fromPost.LoadPostsSuccess(posts);
+        }),
         catchError(err => of(new fromError.AddError(err.error)))
       )
     )
@@ -34,7 +36,7 @@ export class PostEffects {
     tap(() => this.store.dispatch(new fromError.RemoveError())),
     mergeMap(action =>
       this.api.getPost(action.payload).pipe(
-        map(post => new fromPost.LoadPostSuccess(post)),
+        map(post => new fromPost.LoadPostSuccess(post[0])),
         catchError(err => of(new fromError.AddError(err.error)))
       )
     )
@@ -70,8 +72,7 @@ export class PostEffects {
     tap(() => this.store.dispatch(new fromError.RemoveError())),
     mergeMap(action =>
       this.api.deletePost(action.payload).pipe(
-        map((post) => {
-          console.log(post);
+        map(post => {
           return new fromPost.RemovePostSuccess(action.payload);
         }),
         catchError(err => of(new fromError.AddError(err.error)))

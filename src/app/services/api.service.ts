@@ -7,7 +7,7 @@ import { AppState } from 'src/app/app.module';
 
 @Injectable()
 export class ApiService {
-  private URL = 'http://localhost:3000';
+  private URL = 'https://dry-woodland-78398.herokuapp.com';
 
   constructor(private http: HttpClient, private store: Store<AppState>) {}
 
@@ -30,7 +30,7 @@ export class ApiService {
     let post: any;
     this.store.select('posts').subscribe(state => {
       if (state.posts.length) {
-        [post] = state.posts.filter(el => el.id === +id);
+        post = state.posts.filter(el => `${el.id}` === id);
         post = of(post);
       } else {
         post = this.request('GET', `posts/${id}`);

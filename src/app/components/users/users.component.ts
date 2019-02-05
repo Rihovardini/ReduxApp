@@ -19,6 +19,7 @@ export class UsersComponent implements OnInit {
   ngOnInit() {
     this.store.dispatch(new LoadPosts());
     this.store.select('posts').subscribe(state => {
+      console.log(state);
       this.posts = state.posts;
     });
   }
