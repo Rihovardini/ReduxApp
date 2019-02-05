@@ -7,14 +7,14 @@ import { AppState } from 'src/app/app.module';
 
 @Injectable()
 export class ApiService {
-  private URL = 'http://localhost:3000';
+  private URL = 'https://dry-woodland-78398.herokuapp.com';
 
   constructor(private http: HttpClient, private store: Store<AppState>) {}
 
   private request(
     method: string,
     endpoint: string,
-    body?: any
+    body?: Post
   ): Observable<any> {
     const url = `${this.URL}/${endpoint}`;
     return this.http.request(method, url, {
@@ -30,7 +30,7 @@ export class ApiService {
     let post: any;
     this.store.select('posts').subscribe(state => {
       if (state.posts.length) {
-        [post] = state.posts.filter(el => el.id === +id);
+        post = state.posts.filter(el => `${el.id}` === id);
         post = of(post);
       } else {
         post = this.request('GET', `posts/${id}`);
@@ -39,15 +39,15 @@ export class ApiService {
     return post;
   }
 
-  createPost(post: Post) {
+  createPost(post: Post): Observable<Post> {
     return this.request('POST', `posts`, post);
   }
 
-  putPost(post: Post) {
+  putPost(post: Post): Observable<Post> {
     return this.request('PUT', `posts/${post.id}`, post);
   }
 
-  deletePost(postId): Observable<Post> {
+  deletePost(postId: string): Observable<Post> {
     const endpoint = `posts/${postId}`;
     return this.request('DELETE', endpoint);
   }

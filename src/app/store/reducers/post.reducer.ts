@@ -1,15 +1,13 @@
 import { UserActions, PostAction } from '../actions/post.action';
 import { PostState } from '..';
+import { Post } from 'src/app/models/Post.model';
 const initialState: PostState = {
   loaded: false,
   loading: false,
   posts: []
 };
 
-export const postReducer: (
-  state: PostState,
-  action: PostAction
-) => PostState = (state: PostState = initialState, action: PostAction) => {
+export function postReducer(state: PostState, action: PostAction): PostState {
   switch (action.type) {
     case UserActions.LOAD_POSTS: {
       return { ...state, loading: true, loaded: false };
@@ -45,10 +43,10 @@ export const postReducer: (
     }
     case UserActions.REMOVE_POST_SUCCESS: {
       const postId = action.payload;
-      state.posts = state.posts.filter(el => el.id !== +postId);
+      state.posts = state.posts.filter(el => `${el.id}` !== postId);
       return { ...state, loading: false, loaded: true };
     }
     default:
       return state;
   }
-};
+}

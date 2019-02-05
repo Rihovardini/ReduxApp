@@ -4,6 +4,7 @@ import { UsersComponent } from './components/users/users.component';
 import { PostComponent } from './components/post/post.component';
 
 const routes: Routes = [
+  { path: '', redirectTo: '/', pathMatch: 'full' },
   {
     path: '',
     component: UsersComponent

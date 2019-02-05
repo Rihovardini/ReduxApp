@@ -3,7 +3,7 @@ import { Actions, Effect, ofType } from '@ngrx/effects';
 import { Store, Action } from '@ngrx/store';
 import { Observable, of } from 'rxjs';
 import { tap, catchError, mergeMap, map } from 'rxjs/operators';
-import { PostState } from '..';
+import { PostState } from '../';
 import * as fromPost from '../actions/post.action';
 import * as fromError from '../actions/error.action';
 import { ApiService } from 'src/app/services/api.service';
@@ -22,7 +22,9 @@ export class PostEffects {
     tap(() => this.store.dispatch(new fromError.RemoveError())),
     mergeMap(() =>
       this.api.getPosts().pipe(
-        map(posts => new fromPost.LoadPostsSuccess(posts)),
+        map(posts => {
+          return new fromPost.LoadPostsSuccess(posts);
+        }),
         catchError(err => of(new fromError.AddError(err.error)))
       )
     )
@@ -34,7 +36,7 @@ export class PostEffects {
     tap(() => this.store.dispatch(new fromError.RemoveError())),
     mergeMap(action =>
       this.api.getPost(action.payload).pipe(
-        map(post => new fromPost.LoadPostSuccess(post)),
+        map(post => new fromPost.LoadPostSuccess(post[0])),
         catchError(err => of(new fromError.AddError(err.error)))
       )
     )

@@ -9,13 +9,12 @@
       <mat-form-field>
         <input
           matInput
-          [(ngModel)]="post.title"
+          [(ngModel)]="post.name"
           maxlength="300"
           minlength="4"
           required
           placeholder="Title"
-          #postName="ngModel"
-        />
+          #postName="ngModel"/>
       </mat-form-field>
       <div *ngIf="postName.invalid && postName.touched" class="alert">
         <div *ngIf="postName.errors.required">Name is required.</div>
@@ -32,8 +31,7 @@
           required
           maxlength="400"
           minlength="4"
-          #postBody="ngModel"
-        />
+          #postBody="ngModel"/>
       </mat-form-field>
       <div *ngIf="postBody.invalid && postBody.touched" class="alert">
         <div *ngIf="postBody.errors.required">Description is required.</div>
@@ -48,17 +46,15 @@
         mat-raised-button
         *ngIf="typeOfButton"
         (click)="editPost()"
-        color="primary"
-      >
-        Edit
+        color="primary">
+        {{ typeOfPost }}
       </button>
       <button
         mat-raised-button
         *ngIf="!typeOfButton"
         (click)="createPost()"
-        color="primary"
-      >
-        Create
+        color="primary">
+        {{ typeOfPost }}
       </button>
       <button mat-raised-button color="warn" routerLink="/">Cancel</button>
     </mat-card-actions>
